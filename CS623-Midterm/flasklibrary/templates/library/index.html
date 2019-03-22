@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    {% if g.user.role=='user' %}
+      <h1>{% block title %}My Books{% endblock %}</h1>  
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+  {% for post in posts %}
+    <article class="User">
+      <header>
+        <div>          
+          <h1>Hello  {{ post['id'] }} : {{ post['username'] }}</h1>
+        </div>
+      </header>
+      <p class="body">{{ post['body'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+ 
+  {% if posts %}
+ 
+  <article class="Books"></article>
+  <header></header>
+  
+  <br><a href="{{ url_for('library.listBooks') }}">Add New Book</a><br><br>
+  
+    <table>
+      <tr>
+          <th>Book ID</th>
+          <th>Book Name</th>
+          <th>Genre Name</th>
+          <th>About The Book</th>
+          <th>Return The Book</th>
+      </tr>
+      {% for book in books %}
+          <tr>
+              <td>{{ book['book_id'] }}</td>
+              <td>{{ book['book_name'] }}</td>
+              <td>{{ book['genre_name'] }}</td>              
+              <td><a href="{{ url_for('library.aboutbook', book_id=book.book_id ) }}">About the book</a></td>
+              <td><a href="{{ url_for('library.returnbook', book_id=book.book_id , user_id=posts[0].id , book_name=book.book_name ) }}">Return the book</a></td>     
+          </tr>
+      {% endfor %}
+
+  </table>
+
+</article>
+{% endif %}
+{% endblock %}

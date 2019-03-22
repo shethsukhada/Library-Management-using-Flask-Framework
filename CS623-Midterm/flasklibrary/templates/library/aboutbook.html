@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h1>{% block title %}Book Details{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<BR><BR><BR>
+<table style=width:400x;height:300px; align=center>
+<TR>
+    <TD>Book ID</TD>
+    <TD>{{ book_details['book_id'] }}</TD>
+</TR>
+
+<TR>
+    <TD>Book Name</TD>
+    <TD>{{ book_details['book_name'] }}</TD>
+</TR>
+
+<TR>
+        <TD>Book Details</TD>
+        <TD>{{ book_details['genre_name'] }}</TD>
+</TR>
+    
+<TR>
+        <TD>Book Author Name</TD>
+        <TD>{{ book_details['author_firstname'] }}  {{ book_details['author_middlename'] }}  {{ book_details['author_lastname'] }}</TD>
+</TR>
+    
+<TR>
+        <TD>Book Type</TD>
+        <TD>{{ book_details['type_name'] }}</TD>
+</TR>
+    
+<TR>
+        <TD>Book Unit Price</TD>
+        <TD>$ {{ book_details['unit_price'] }}</TD>
+</TR>
+
+</table>
+<BR><BR><BR>
+<a href="{{ url_for('library.index') }}">Go Back</a>  
+{% endblock %}

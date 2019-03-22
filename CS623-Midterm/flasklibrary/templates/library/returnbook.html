@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>
+        {% block title %}
+        Book Return
+        {% endblock %}
+    </h1>
+{% endblock %}
+
+{% block content %}
+<h4>Below book has been removed from your record</h4>
+<h3>Book Id - {{ book_id }}</h3>
+<h3>Book Name - {{ book_name }}</h3>  
+<h3 align=center>!!Happy Reading!!</h3>  
+<a href="{{ url_for('library.index') }}" align=center>Go Back</a>   
+{% endblock %}

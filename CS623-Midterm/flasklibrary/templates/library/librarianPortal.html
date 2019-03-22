@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+  {% if g.user.role=='librarian' %}
+    <h1>{% block title %}Librarian{% endblock %} </h1>
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {%if g.user.role =='librarian' %}
+  <br>
+  <a href="{{ url_for('library.trackthebooks') }}">Track the books</a>
+  <br><br>
+
+    <div>
+      <form action="addbook" method="post">
+
+        <label for="bookId"> Book Id: </label>
+        <input id="bookId" type="text" name="book_id"/>
+
+        <label for="bookName"> Book Title: </label>
+        <input id="bookName" type="text" name="book_title"/>
+
+        <label for="author"> Author: </label>
+
+        <select id="author" name="author">
+          {% for author in authors %}
+            <option value="{{author['author_id']}}" label="{{ author['author_firstname'] }} {{ author['author_middlename']}} {{ author['author_lastname']}}">
+          {% endfor %}
+        </select>
+
+        <label for="genre"> Genre: </label>
+        <select id="genre" name="genre">
+          {% for genre in genres %}
+          <option value="{{genre['book_genre_id']}}" label="{{ genre['genre_name'] }}">
+            {% endfor %}
+        </select>
+
+        <label for="publisher"> Publisher</label>
+        <select id="publisher" name="publisher">
+          {% for publisher in publishers %}
+          <option value="{{publisher['book_publisher_id']}}" label="{{ publisher['publisher_name'] }}">
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Add Book">
+      </form>
+    </div>
+  {% endif %}
+{% endblock %}
+
+

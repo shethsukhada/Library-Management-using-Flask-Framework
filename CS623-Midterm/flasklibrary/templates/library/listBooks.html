@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}List of books{% endblock %}</h1>
+  {% if g.user %}
+    
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div>
+        <form action="" method="post">
+            <input list="books" name="books" autocomplete="off">
+            <datalist id="books">
+                {% for book in books %} 
+                    <option value="{{ book['book_name'] }}">
+                {% endfor %}
+            </datalist>
+            <input type="submit" value="Choose!">
+              
+        </form>
+    </div>
+
+    <a href="{{ url_for('library.index') }}">Go Back to My List</a>
+
+<!--
+    <article class="Books"></article>
+        <header></header>
+        <table>
+            <tr>
+                <th>Book ID</th>
+                <th>Book Name</th>
+                <th>Genre Name</th>
+                <th>Rentbutton</th>
+                <th>rent link</th>
+            </tr>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book['book_id'] }}</td>
+                    <td>{{ book['book_name'] }}</td>
+                    <td>{{ book['genre_name'] }}</td>
+                    <td><form action="" method="post"><input type="submit" value={{ book['book_id'] }}></form></td>
+                    <td><a href="{{ url_for('library.index') }}">Rent Me!</a></td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </article>
+-->
+{% endblock %}

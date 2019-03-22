@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+  {% if g.user.role=='librarian' %}
+    <h1>{% block title %}Librarian{% endblock %} </h1>
+  {% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+ 
+  <article class="Books"></article>
+  <h1>Books Status</h1>
+  <a href="{{ url_for('library.index') }}">Add New Book to the stock</a>
+  <br><br>
+  <table border="1">
+      <tr>
+          <th>User ID</th>
+          <th>User Name</th>
+          <th>Book ID</th>
+          <th>Book Name</th>
+          <th>Copies Left in stock</th>
+      </tr>
+      {% for book in book_tracker %}
+          <tr>
+              <td>{{ book['id'] }}</td>
+              <td>{{ book['username'] }}</td>
+              <td>{{ book['book_id'] }}</td>              
+              <td>{{ book['book_name'] }}</td>
+              <td>{{ book['qty'] }}
+
+          </tr>
+      {% endfor %}
+
+  </table>
+ 
+</article>
+{% endblock %}
